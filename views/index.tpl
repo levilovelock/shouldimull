@@ -33,7 +33,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block center-block" id="goButton">Go</button>
+      <button type="submit" class="btn btn-primary btn-block center-block" id="goButton" onclick="UpdateStats()">Go</button>
     </form>
   </div>
+
+  <div class="container hide" id="resultsSection">
+    <h3 class="text-center">You have a 39.95% chance of reaching your dreams!</h3>
+  </div>
+
+  <script src="static/js/mulls.js"></script>
 {{template "common/foot.tpl"}}
