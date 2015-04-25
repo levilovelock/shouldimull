@@ -29,16 +29,16 @@
           </select>
         </div>
         <div class="col-sm-6">
-          <input type="number" class="form-control" id="cardsYouWant" placeholder="1">
+          <input type="number" class="form-control" id="numYouWant" placeholder="1">
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block center-block" id="goButton" onclick="UpdateStats()">Go</button>
+      <button type="button" class="btn btn-primary btn-block center-block" id="goButton" onclick="UpdateStats()">Go</button>
     </form>
   </div>
 
   <div class="container hide" id="resultsSection">
-    <h3 class="text-center">You have a 39.95% chance of reaching your dreams!</h3>
+    <h3 class="text-center">You have a <span id="resultantChance">39.95</span>% chance of reaching your dreams!</h3>
   </div>
 
   <script src="static/js/mulls.js"></script>
