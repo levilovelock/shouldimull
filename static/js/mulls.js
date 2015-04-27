@@ -16,9 +16,6 @@ UpdateStats = function() {
       console.log("x:" + x + " k:" + k)
       r = calcHypergeometricFormula(i,N,n,k);
       result += r
-      console.log("i: " + i + "\tr: " + r + "\tres: " + result)
-
-      if (i > 10) { alert(5) }
     }
   }
 
