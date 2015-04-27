@@ -1,8 +1,27 @@
 buttonHit = false
 
+var AT_LEAST = "At least"
+var EXACTLY = "Exactly"
+var choice = ""
+
 UpdateStats = function() {  
   grabVariables();
-  result = calcHypergeometricFormula(x,N,n,k);
+
+  if (choice == EXACTLY) {
+    result = calcHypergeometricFormula(x,N,n,k);
+  } else if (choice == AT_LEAST) {
+    result = 0.0;
+
+    for (var i = x; i <= k; i++) {
+      console.log("x:" + x + " k:" + k)
+      r = calcHypergeometricFormula(i,N,n,k);
+      result += r
+      console.log("i: " + i + "\tr: " + r + "\tres: " + result)
+
+      if (i > 10) { alert(5) }
+    }
+  }
+
   updateResultsSection(result);
   unhideResults();
 };
@@ -12,8 +31,7 @@ calcHypergeometricFormula = function(x,N,n,k){
   b = combi((N-k),(n-x))
   c = combi(N,n);
   rawResult = (a * b) / c;
-  niceResult = parseFloat(Math.round(rawResult * 10000) / 100).toFixed(2);
-  return niceResult;
+  return rawResult;
 };
 
 combi = function(n,r) {
@@ -28,7 +46,8 @@ fact = function(num){
 }
 
 updateResultsSection = function(r){
-  $("#resultantChance").text(r)
+  niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
+  $("#resultantChance").text(niceResult)
 };
 
 grabVariables = function() {
@@ -49,6 +68,8 @@ grabVariables = function() {
     x = $("#numYouWant").attr("placeholder");
     $("#numYouWant").val(x);
   }
+
+  choice = $("#hyperChoice").val();
 
   n = 7
 };
