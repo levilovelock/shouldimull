@@ -1,6 +1,6 @@
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">Made by Levi Lovelock</p>
+        <p class="text-muted text-right">Source on <a href="https://github.com/levilovelock/shouldimull">GitHub</a></p>
       </div>
     </footer>
 
