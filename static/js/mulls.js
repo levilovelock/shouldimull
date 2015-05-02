@@ -6,24 +6,28 @@ var choice = ""
 
 UpdateStats = function() {  
   grabVariables();
+  var result = calcResult();
+  updateResultsSection(result);
+  unhideResults();
+};
 
+calcResult = function() {
+  var result;
   if (choice == EXACTLY) {
     result = calcHypergeometricFormula(x,N,n,k);
   } else if (choice == AT_LEAST) {
     result = 0.0;
 
     for (var i = x; i <= k; i++) {
-      console.log("x:" + x + " k:" + k)
       r = calcHypergeometricFormula(i,N,n,k);
       result += r
     }
   }
-
-  updateResultsSection(result);
-  unhideResults();
+  return result;
 };
 
 calcHypergeometricFormula = function(x,N,n,k){
+  var a, b, c;
   a = combi(k,x);
   b = combi((N-k),(n-x))
   c = combi(N,n);
@@ -36,8 +40,8 @@ combi = function(n,r) {
 };
 
 fact = function(num){
-    var rval=1;
-    for (var i = 2; i <= num; i++)
+    var rval=1.0;
+    for (var i = 2.0; i <= num; i++)
         rval = rval * i;
     return rval;
 }
