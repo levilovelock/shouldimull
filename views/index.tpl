@@ -1,7 +1,7 @@
 {{template "common/head.tpl"}}
   <div class="container">
     <div class="page-header">
-      <h1>Mulligan Calculator welcomes you!</h1>
+      <h1>Welcome to the Mulligan Calculator!</h1>
     </div>
 
     <form class="form-horizontal">
