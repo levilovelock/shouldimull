@@ -15,8 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'static/js/jquery.js',
-      'static/js/bootstrap.js',
+      'static/js/jquery.min.js',
+      'static/js/bootstrap.min.js',
       'static/js/mulls.js',
       'tests/js/**/*.js'
     ],
@@ -64,6 +64,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };
