@@ -1,6 +1,6 @@
 jstests:
 	karma start my.conf.js
 
-package:
+package32:
 	go get
-	bee pack -v=true
+	bee pack -v=true -be="GOARCH=386"
