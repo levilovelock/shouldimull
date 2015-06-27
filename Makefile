@@ -2,5 +2,5 @@ jstests:
 	karma start my.conf.js
 
 package:
-	go get -u
+	go get
 	bee pack -v=true
