@@ -6,28 +6,35 @@
 
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="cardsInDeck" class="col-sm-5 control-label">How many cards in deck</label>
-        <div class="col-sm-6">
+        <label for="cardsInDeck" class="col-sm-6 control-label">How big is the deck</label>
+        <div class="col-sm-2">
           <input type="number" class="form-control" id="cardsInDeck" placeholder="60">
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cardsYouWant" class="col-sm-5 control-label">How many of the one you want</label>
-        <div class="col-sm-6">
+        <label for="cardsYouWant" class="col-sm-6 control-label">How many copies in the deck</label>
+        <div class="col-sm-2">
           <input type="number" class="form-control" id="cardsYouWant" placeholder="4">
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cardsYouWant" class="col-sm-3 control-label">And you want</label>
+        <label for="cardDraws" class="col-sm-6 control-label">Number of card draws</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" id="cardDraws" placeholder="7">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cardsYouWant" class="col-sm-4 control-label">And you want</label>
         <div class="col-sm-2">
           <select class="form-control" id="hyperChoice">
             <option>At least</option>
             <option>Exactly</option>
           </select>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-2">
           <input type="number" class="form-control" id="numYouWant" placeholder="1">
         </div>
       </div>

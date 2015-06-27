@@ -64,6 +64,12 @@ grabVariables = function() {
     $("#cardsYouWant").val(k);
   }
 
+  n = $("#cardDraws").val();
+  if (n == "") {
+    n = $("#cardDraws").attr("placeholder");
+    $("#cardDraws").val(n);
+  }
+
   x = $("#numYouWant").val();
   if (x == "") {
     x = $("#numYouWant").attr("placeholder");
@@ -71,8 +77,6 @@ grabVariables = function() {
   }
 
   choice = $("#hyperChoice").val();
-
-  n = 7
 };
 
 unhideResults = function(){
