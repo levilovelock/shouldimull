@@ -54,25 +54,25 @@ var updateResultsSection = function(r){
 
 var grabVariables = function() {
   N = $("#cardsInDeck").val();
-  if (N == "") {
+  if (N === "") {
     N = $("#cardsInDeck").attr("placeholder");
     $("#cardsInDeck").val(N);
   }
 
   k = $("#cardsYouWant").val();
-  if (k == "") {
+  if (k === "") {
     k = $("#cardsYouWant").attr("placeholder");
     $("#cardsYouWant").val(k);
   }
 
   n = $("#cardDraws").val();
-  if (n == "") {
+  if (n === "") {
     n = $("#cardDraws").attr("placeholder");
     $("#cardDraws").val(n);
   }
 
   x = $("#numYouWant").val();
-  if (x == "") {
+  if (x === "") {
     x = $("#numYouWant").attr("placeholder");
     $("#numYouWant").val(x);
   }
@@ -81,7 +81,7 @@ var grabVariables = function() {
 };
 
 var unhideResults = function(){
-  if (buttonHit == false) {
+  if (buttonHit === false) {
     $(function(){
       $("#resultsSection").removeClass('hide');
     });
