@@ -48,8 +48,8 @@ var fact = function(num){
 
 var updateResultsSection = function(r){
   niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
-  minMaxedResult = Math.min(Math.max(0,niceResult), 100)
-  $("#resultantChance").text(minMaxedResult)
+  minMaxedResult = Math.min(Math.max(0,niceResult), 100);
+  $("#resultantChance").text(minMaxedResult);
 };
 
 var grabVariables = function() {
@@ -83,8 +83,8 @@ var grabVariables = function() {
 var unhideResults = function(){
   if (buttonHit == false) {
     $(function(){
-      $("#resultsSection").removeClass('hide')
-    })
-    buttonHit = true
+      $("#resultsSection").removeClass('hide');
+    });
+    buttonHit = true;
   }
 };
