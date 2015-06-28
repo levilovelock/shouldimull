@@ -11,8 +11,6 @@ var UpdateStats = function() {
   unhideResults();
 };
 
-var reset
-
 var calcResult = function() {
   var result;
   if (choice == EXACTLY) {
