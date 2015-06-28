@@ -48,7 +48,8 @@ fact = function(num){
 
 updateResultsSection = function(r){
   niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
-  $("#resultantChance").text(niceResult)
+  minMaxedResult = Math.min(Math.max(0,niceResult), 100)
+  $("#resultantChance").text(minMaxedResult)
 };
 
 grabVariables = function() {
