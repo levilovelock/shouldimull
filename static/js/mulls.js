@@ -101,7 +101,7 @@ var resetPage = function(){
   $("#cardDraws").val(n);
   x = $("#numYouWant").attr("placeholder");
   $("#numYouWant").val(x);
-  $("#hyperChoice").val("At least")
+  $("#hyperChoice").val("At least");
 };
 
 var hideResults = function(){
