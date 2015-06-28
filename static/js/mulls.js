@@ -1,8 +1,8 @@
-buttonHit = false
+var buttonHit = false;
 
-var AT_LEAST = "At least"
-var EXACTLY = "Exactly"
-var choice = ""
+var AT_LEAST = "At least";
+var EXACTLY = "Exactly";
+var choice = "";
 
 var UpdateStats = function() {
   grabVariables();
@@ -22,7 +22,7 @@ var calcResult = function() {
 
     for (var i = x; i <= k; i++) {
       r = calcHypergeometricFormula(i,N,n,k);
-      result += r
+      result += r;
     }
   }
   return result;
@@ -31,7 +31,7 @@ var calcResult = function() {
 var calcHypergeometricFormula = function(x,N,n,k){
   var a, b, c;
   a = combi(k,x);
-  b = combi((N-k),(n-x))
+  b = combi((N-k),(n-x));
   c = combi(N,n);
   rawResult = (a * b) / c;
   return rawResult;
@@ -46,7 +46,7 @@ var fact = function(num){
     for (var i = 2.0; i <= num; i++)
         rval = rval * i;
     return rval;
-}
+};
 
 var updateResultsSection = function(r){
   niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
