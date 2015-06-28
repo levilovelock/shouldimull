@@ -8,21 +8,21 @@
       <div class="form-group">
         <label for="cardsInDeck" class="col-sm-6 control-label">How big is the deck</label>
         <div class="col-sm-2">
-          <input type="number" class="form-control" id="cardsInDeck" placeholder="60">
+          <input type="number" min="1" class="form-control" id="cardsInDeck" placeholder="60">
         </div>
       </div>
 
       <div class="form-group">
         <label for="cardsYouWant" class="col-sm-6 control-label">How many copies in the deck</label>
         <div class="col-sm-2">
-          <input type="number" class="form-control" id="cardsYouWant" placeholder="4">
+          <input type="number" min="1" class="form-control" id="cardsYouWant" placeholder="4">
         </div>
       </div>
 
       <div class="form-group">
         <label for="cardDraws" class="col-sm-6 control-label">Number of card draws</label>
         <div class="col-sm-2">
-          <input type="number" class="form-control" id="cardDraws" placeholder="7">
+          <input type="number" min="1" class="form-control" id="cardDraws" placeholder="7">
         </div>
       </div>
 
@@ -35,11 +35,14 @@
           </select>
         </div>
         <div class="col-sm-2">
-          <input type="number" class="form-control" id="numYouWant" placeholder="1">
+          <input type="number" min="1" class="form-control" id="numYouWant" placeholder="1">
         </div>
       </div>
 
-      <button type="button" class="btn btn-primary btn-block center-block" id="goButton" onclick="UpdateStats()">Go</button>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" id="goButton" onclick="UpdateStats()">Go</button>
+        <button type="button" class="btn btn-warning hide" id="resetButton" onclick="resetPage()">Reset</button>
+      </div>
     </form>
   </div>
 

@@ -83,8 +83,31 @@ var grabVariables = function() {
 var unhideResults = function(){
   if (buttonHit === false) {
     $(function(){
-      $("#resultsSection").removeClass('hide');
+      $("#resetButton").removeClass("hide");
+      $("#resultsSection").removeClass("hide");
     });
     buttonHit = true;
   }
+};
+
+var resetPage = function(){
+  hideResults();
+  // Basically just reset the fields back to placeholder values - tut
+  N = $("#cardsInDeck").attr("placeholder");
+  $("#cardsInDeck").val(N);
+  k = $("#cardsYouWant").attr("placeholder");
+  $("#cardsYouWant").val(k);
+  n = $("#cardDraws").attr("placeholder");
+  $("#cardDraws").val(n);
+  x = $("#numYouWant").attr("placeholder");
+  $("#numYouWant").val(x);
+  $("#hyperChoice").val("At least")
+};
+
+var hideResults = function(){
+  $(function(){
+    $("#resetButton").addClass("hide");
+    $("#resultsSection").addClass("hide");
+  });
+  buttonHit = false;
 };
