@@ -28,20 +28,32 @@ QUnit.test("test draw 0 from 60 in 7 with 4, 10 turns", function(assert) {
   assert.ok(count == 10);
 });
 
-QUnit.test("test draw 3 from 60 with 24, 1 turn", function(assert){
+QUnit.test("test draw 3 from population of 60 with number of successes equal to 24, with 1 draws", function(assert){
   r = calcHypergeometricFormula(3,60,7,24);
   assert.ok(round(r) == 30.87);
 });
 
-QUnit.test("test draw 1 from 2 with 2, 1 draw", function(assert){
+QUnit.test("test draw 1 from population of 2 with number of successes equal to 2, with 1 draws", function(assert){
   r = calcHypergeometricFormula(1,2,1,2);
-  assert.ok(round(r) == 100.00);  
+  assert.ok(round(r) == 100.00);
 });
 
-QUnit.test("test draw 2 from 2 with 2, 2 draw", function(assert){
+QUnit.test("test draw 2 from population of 2 with number of successes equal to 2, with 2 draws", function(assert){
   r = calcHypergeometricFormula(2,2,2,2);
-  assert.ok(round(r) == 100.00);  
+  assert.ok(round(r) == 100.00);
 });
+
+QUnit.test("test draw 0 from population of 2 with number of successes equal to 2, with 2 draws", function(assert){
+  r = calcHypergeometricFormula(2,2,0,2);
+  assert.ok(round(r) == 0.00);
+});
+
+QUnit.test("test draw 4 from population of 60 with number of successes equal to 4, with 7 draws and 1 mulligan", function(assert){
+  r = calcHypergeometricFormulaWithMulligans(1,60,7,4,1);
+  console.log(round(r))
+  assert.ok(round(r) == 53.88);
+});
+
 
 // TODO: Fix this test
 // QUnit.test("test draw 1 from 2 with 2, 2 draw", function(assert){
@@ -53,7 +65,7 @@ QUnit.test("test draw 2 from 2 with 2, 2 draw", function(assert){
 
 // Test Combinations
 QUnit.test("test combinations", function(assert){
-  
+
   // Format n choose y = z
   testMap = [
     [2,2,1],
