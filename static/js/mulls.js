@@ -4,29 +4,47 @@ var AT_LEAST = "At least";
 var EXACTLY = "Exactly";
 var choice = "";
 
+// Result related vars
+var sanitizedResult = "";
+var totalMulligans = 0;
+
 var UpdateStats = function() {
+  totalMulligans = 0;
   grabVariables();
   var result = calcResult();
-  updateResultsSection(result);
+  sanitizeResult(result);
+  updateResultsSection();
   unhideResults();
 };
 
 var calcResult = function() {
   var result;
   if (choice == EXACTLY) {
-    result = calcHypergeometricFormula(x,N,n,k);
+    result = calcHypergeometricFormulaWithMulligans(x,N,n,k,totalMulligans);
   } else if (choice == AT_LEAST) {
     result = 0.0;
 
     for (var i = x; i <= k; i++) {
-      r = calcHypergeometricFormula(i,N,n,k);
+      r = calcHypergeometricFormulaWithMulligans(i,N,n,k,totalMulligans);
       result += r;
     }
   }
   return result;
 };
 
+var calcHypergeometricFormulaWithMulligans = function(x,N,n,k,m){
+  if (m === 0) {
+    return calcHypergeometricFormula(x,N,n,k);
+  } else {
+    var previousHand = calcHypergeometricFormulaWithMulligans(x,N,n,k,m-1);
+    return previousHand + (1 - previousHand) * calcHypergeometricFormula(x,N,n-m,k);
+  }
+};
+
 var calcHypergeometricFormula = function(x,N,n,k){
+  if (n <= 0 || N <= 0) {
+    return 0;
+  }
   var a, b, c;
   a = combi(k,x);
   b = combi((N-k),(n-x));
@@ -46,10 +64,14 @@ var fact = function(num){
     return rval;
 };
 
-var updateResultsSection = function(r){
+var sanitizeResult = function(r) {
   niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
-  minMaxedResult = Math.min(Math.max(0,niceResult), 100);
-  $("#resultantChance").text(minMaxedResult);
+  sanitizedResult = Math.min(Math.max(0,niceResult), 100);
+};
+
+var updateResultsSection = function(r){
+  $("#resultantChance").text(sanitizedResult);
+  $("#mulliganNumber").text(totalMulligans);
 };
 
 var grabVariables = function() {
@@ -84,6 +106,7 @@ var unhideResults = function(){
   if (buttonHit === false) {
     $(function(){
       $("#resetButton").removeClass("hide");
+      $("#mulliganButton").removeClass("hide");
       $("#resultsSection").removeClass("hide");
     });
     buttonHit = true;
@@ -107,7 +130,15 @@ var resetPage = function(){
 var hideResults = function(){
   $(function(){
     $("#resetButton").addClass("hide");
+    $("#mulliganButton").addClass("hide");
     $("#resultsSection").addClass("hide");
   });
   buttonHit = false;
+};
+
+var mulligan = function(){
+  totalMulligans++;
+  var result = calcResult();
+  sanitizeResult(result);
+  updateResultsSection();
 };

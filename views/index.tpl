@@ -40,14 +40,15 @@
       </div>
 
       <div class="text-center">
-        <button type="button" class="btn btn-primary" id="goButton" onclick="UpdateStats()">Go</button>
         <button type="button" class="btn btn-warning hide" id="resetButton" onclick="resetPage()">Reset</button>
+        <button type="button" class="btn btn-primary" id="goButton" onclick="UpdateStats()">Go</button>
+        <button type="button" class="btn btn-success hide" id="mulliganButton" onclick="mulligan()">Mulligan</button>
       </div>
     </form>
   </div>
 
   <div class="container hide" id="resultsSection">
-    <h3 class="text-center">You have a <span id="resultantChance">39.95</span>% chance of reaching your dreams!</h3>
+    <h3 class="text-center">You have a <span id="resultantChance"></span>% chance of drawing your card(s) after <span id="mulliganNumber"></span> mulligans</h3>
   </div>
 
   <script src="static/js/mulls.js"></script>
