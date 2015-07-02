@@ -2,7 +2,14 @@ var buttonHit = false;
 
 var AT_LEAST = "At least";
 var EXACTLY = "Exactly";
-var choice = "";
+
+var MULL_CALC = {
+  x: 0,
+  N: 0,
+  n: 0,
+  k: 0,
+  choice: ""
+};
 
 // Result related vars
 var sanitizedResult = "";
@@ -19,10 +26,10 @@ var UpdateStats = function() {
 
 var calcResult = function() {
   var result;
-  if (choice == EXACTLY) {
-    result = calcExactHypergeometricFormulaWithMulligans(x,N,n,k,totalMulligans);
-  } else if (choice == AT_LEAST) {
-    result = calcAtLeastHypergeometricFormulaWithMulligans(x,N,n,k,totalMulligans);
+  if (MULL_CALC.choice == EXACTLY) {
+    result = calcExactHypergeometricFormulaWithMulligans(MULL_CALC.x, MULL_CALC.N, MULL_CALC.n, MULL_CALC.k, totalMulligans);
+  } else if (MULL_CALC.choice == AT_LEAST) {
+    result = calcAtLeastHypergeometricFormulaWithMulligans(MULL_CALC.x, MULL_CALC.N, MULL_CALC.n, MULL_CALC.k, totalMulligans);
   }
   return result;
 };
@@ -88,32 +95,32 @@ var updateResultsSection = function(r){
   $("#mulliganNumber").text(totalMulligans);
 };
 
-var grabVariables = function() {
-  N = $("#cardsInDeck").val();
-  if (N === "") {
-    N = $("#cardsInDeck").attr("placeholder");
-    $("#cardsInDeck").val(N);
+var updateMullCalcVariables = function() {
+  MULL_CALC.N = $("#cardsInDeck").val();
+  if (MULL_CALC.N === "") {
+    MULL_CALC.N = $("#cardsInDeck").attr("placeholder");
+    $("#cardsInDeck").val(MULL_CALC.N);
   }
 
-  k = $("#cardsYouWant").val();
-  if (k === "") {
-    k = $("#cardsYouWant").attr("placeholder");
-    $("#cardsYouWant").val(k);
+  MULL_CALC.k = $("#cardsYouWant").val();
+  if (MULL_CALC.k === "") {
+    MULL_CALC.k = $("#cardsYouWant").attr("placeholder");
+    $("#cardsYouWant").val(MULL_CALC.k);
   }
 
-  n = $("#cardDraws").val();
-  if (n === "") {
-    n = $("#cardDraws").attr("placeholder");
-    $("#cardDraws").val(n);
+  MULL_CALC.n = $("#cardDraws").val();
+  if (MULL_CALC.n === "") {
+    MULL_CALC.n = $("#cardDraws").attr("placeholder");
+    $("#cardDraws").val(MULL_CALC.n);
   }
 
-  x = $("#numYouWant").val();
-  if (x === "") {
-    x = $("#numYouWant").attr("placeholder");
-    $("#numYouWant").val(x);
+  MULL_CALC.x = $("#numYouWant").val();
+  if (MULL_CALC.x === "") {
+    MULL_CALC.x = $("#numYouWant").attr("placeholder");
+    $("#numYouWant").val(MULL_CALC.x);
   }
 
-  choice = $("#hyperChoice").val();
+  MULL_CALC.choice = $("#hyperChoice").val();
 };
 
 var unhideResults = function(){
@@ -130,15 +137,14 @@ var unhideResults = function(){
 var resetPage = function(){
   hideResults();
   // Basically just reset the fields back to placeholder values - tut
-  N = $("#cardsInDeck").attr("placeholder");
-  $("#cardsInDeck").val(N);
-  k = $("#cardsYouWant").attr("placeholder");
-  $("#cardsYouWant").val(k);
-  n = $("#cardDraws").attr("placeholder");
-  $("#cardDraws").val(n);
-  x = $("#numYouWant").attr("placeholder");
-  $("#numYouWant").val(x);
-  $("#hyperChoice").val("At least");
+  MULL_CALC.N = $("#cardsInDeck").attr("placeholder");
+  $("#cardsInDeck").val(MULL_CALC.N);
+  MULL_CALC.k = $("#cardsYouWant").attr("placeholder");
+  $("#cardsYouWant").val(MULL_CALC.k);
+  MULL_CALC.n = $("#cardDraws").attr("placeholder");
+  $("#cardDraws").val(MULL_CALC.n);
+  MULL_CALC.x = $("#numYouWant").attr("placeholder");
+  $("#numYouWant").val(MULL_CALC.x);
 };
 
 var hideResults = function(){
