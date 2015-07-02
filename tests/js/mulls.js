@@ -53,15 +53,6 @@ QUnit.test("test draw 7 from population of 60 with number of successes equal to 
   assert.ok(round(r) == 53.88);
 });
 
-
-// TODO: Fix this test
-// QUnit.test("test draw 1 from 2 with 2, 2 draw", function(assert){
-//   r = calcHypergeometricFormula(1,2,2,2);
-//   console.log(r)
-//   assert.ok(round(r) == 0.00);  
-// });
-
-
 // Test Combinations
 QUnit.test("test combinations", function(assert){
 

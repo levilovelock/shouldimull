@@ -66,6 +66,7 @@ var calcExactHypergeometricFormula = function(x,N,n,k){
   if (n <= 0 || N <= 0) {
     return 0;
   }
+
   var a, b, c;
   a = combi(k,x);
   b = combi((N-k),(n-x));
