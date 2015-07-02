@@ -21,36 +21,35 @@ QUnit.test("test draw 0 from 60 in 7 with 4, 10 turns", function(assert) {
 
   for (var i = 0; i < 10; i++) {
     count++
-    r = calcHypergeometricFormula(0,60,7+i,4);
+    r = calcExactHypergeometricFormula(0,60,7+i,4);
     assert.ok(round(r) == results[i]);
   }
 
   assert.ok(count == 10);
 });
 
-QUnit.test("test draw 3 from population of 60 with number of successes equal to 24, with 1 draws", function(assert){
-  r = calcHypergeometricFormula(3,60,7,24);
+QUnit.test("test draw 7 from population of 60 with number of successes equal to 24, wanting exactly 3", function(assert){
+  r = calcExactHypergeometricFormula(3,60,7,24);
   assert.ok(round(r) == 30.87);
 });
 
-QUnit.test("test draw 1 from population of 2 with number of successes equal to 2, with 1 draws", function(assert){
-  r = calcHypergeometricFormula(1,2,1,2);
+QUnit.test("test draw 1 from population of 2 with number of successes equal to 2, wanting exactly 1", function(assert){
+  r = calcExactHypergeometricFormula(1,2,1,2);
   assert.ok(round(r) == 100.00);
 });
 
-QUnit.test("test draw 2 from population of 2 with number of successes equal to 2, with 2 draws", function(assert){
-  r = calcHypergeometricFormula(2,2,2,2);
+QUnit.test("test draw 2 from population of 2 with number of successes equal to 2, wanting exactly 2", function(assert){
+  r = calcExactHypergeometricFormula(2,2,2,2);
   assert.ok(round(r) == 100.00);
 });
 
-QUnit.test("test draw 0 from population of 2 with number of successes equal to 2, with 2 draws", function(assert){
-  r = calcHypergeometricFormula(2,2,0,2);
+QUnit.test("test draw 0 from population of 2 with number of successes equal to 2, wanting exactly 2", function(assert){
+  r = calcExactHypergeometricFormula(2,2,0,2);
   assert.ok(round(r) == 0.00);
 });
 
-QUnit.test("test draw 4 from population of 60 with number of successes equal to 4, with 7 draws and 1 mulligan", function(assert){
-  r = calcHypergeometricFormulaWithMulligans(1,60,7,4,1);
-  console.log(round(r))
+QUnit.test("test draw 7 from population of 60 with number of successes equal to 4, with 1 mulligan", function(assert){
+  r = calcExactHypergeometricFormulaWithMulligans(1,60,7,4,1);
   assert.ok(round(r) == 53.88);
 });
 
