@@ -28,6 +28,10 @@ QUnit.test("test draw 0 from 60 in 7 with 4, 10 turns", function(assert) {
   assert.ok(count == 10);
 });
 
+// ==============================================
+// TESTS FOR calcExactHypergeometricFormula
+// ==============================================
+
 QUnit.test("test draw 7 from population of 60 with number of successes equal to 24, wanting exactly 3", function(assert){
   r = calcExactHypergeometricFormula(3,60,7,24);
   assert.ok(round(r) == 30.87);
@@ -52,6 +56,21 @@ QUnit.test("test draw 7 from population of 60 with number of successes equal to 
   r = calcExactHypergeometricFormulaWithMulligans(1,60,7,4,1);
   assert.ok(round(r) == 53.88);
 });
+
+// ==============================================
+// TESTS FOR calcAtLeastHypergeometricFormula
+// ==============================================
+
+QUnit.test("test draw 7 from population of 60 with number of successes equal to 4, wanting 1", function(assert){
+  r = calcAtLeastHypergeometricFormula(1,60,7,4);
+  assert.ok(round(r) == 39.95);
+});
+
+QUnit.test("test draw 24 from population of 133 with number of successes equal to 42, wanting 6", function(assert){
+  r = calcAtLeastHypergeometricFormula(6,133,24,42);
+  assert.ok(round(r) == 84.35);
+});
+
 
 // Test Combinations
 QUnit.test("test combinations", function(assert){
