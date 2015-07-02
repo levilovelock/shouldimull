@@ -17,7 +17,7 @@ var totalMulligans = 0;
 
 var UpdateStats = function() {
   totalMulligans = 0;
-  grabVariables();
+  updateMullCalcVariables();
   var result = calcResult();
   sanitizeResult(result);
   updateResultsSection();
@@ -157,7 +157,14 @@ var hideResults = function(){
 };
 
 var mulligan = function(){
-  totalMulligans++;
+  updateMullCalcVariables();
+
+  // Only increment Mulligans if it's less than the number of cards drawn
+  // minus the how many are wanted
+  if (totalMulligans < (MULL_CALC.n - MULL_CALC.x)){
+    totalMulligans++;
+  }
+
   var result = calcResult();
   sanitizeResult(result);
   updateResultsSection();
