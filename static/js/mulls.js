@@ -102,24 +102,28 @@ var updateMullCalcVariables = function() {
     MULL_CALC.N = $("#cardsInDeck").attr("placeholder");
     $("#cardsInDeck").val(MULL_CALC.N);
   }
+  MULL_CALC.N = parseInt(MULL_CALC.N);
 
   MULL_CALC.k = $("#cardsYouWant").val();
   if (MULL_CALC.k === "") {
     MULL_CALC.k = $("#cardsYouWant").attr("placeholder");
     $("#cardsYouWant").val(MULL_CALC.k);
   }
+  MULL_CALC.k = parseInt(MULL_CALC.k);
 
   MULL_CALC.n = $("#cardDraws").val();
   if (MULL_CALC.n === "") {
     MULL_CALC.n = $("#cardDraws").attr("placeholder");
     $("#cardDraws").val(MULL_CALC.n);
   }
+  MULL_CALC.n = parseInt(MULL_CALC.n);
 
   MULL_CALC.x = $("#numYouWant").val();
   if (MULL_CALC.x === "") {
     MULL_CALC.x = $("#numYouWant").attr("placeholder");
     $("#numYouWant").val(MULL_CALC.x);
   }
+  MULL_CALC.x = parseInt(MULL_CALC.x);
 
   MULL_CALC.choice = $("#hyperChoice").val();
 };
@@ -137,15 +141,10 @@ var unhideResults = function(){
 
 var resetPage = function(){
   hideResults();
-  // Basically just reset the fields back to placeholder values - tut
-  MULL_CALC.N = $("#cardsInDeck").attr("placeholder");
-  $("#cardsInDeck").val(MULL_CALC.N);
-  MULL_CALC.k = $("#cardsYouWant").attr("placeholder");
-  $("#cardsYouWant").val(MULL_CALC.k);
-  MULL_CALC.n = $("#cardDraws").attr("placeholder");
-  $("#cardDraws").val(MULL_CALC.n);
-  MULL_CALC.x = $("#numYouWant").attr("placeholder");
-  $("#numYouWant").val(MULL_CALC.x);
+  $("#cardsInDeck").val("");
+  $("#cardsYouWant").val("");
+  $("#cardDraws").val("");
+  $("#numYouWant").val("");
 };
 
 var hideResults = function(){
