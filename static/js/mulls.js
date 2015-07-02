@@ -20,28 +20,42 @@ var UpdateStats = function() {
 var calcResult = function() {
   var result;
   if (choice == EXACTLY) {
-    result = calcHypergeometricFormulaWithMulligans(x,N,n,k,totalMulligans);
+    result = calcExactHypergeometricFormulaWithMulligans(x,N,n,k,totalMulligans);
   } else if (choice == AT_LEAST) {
-    result = 0.0;
-
-    for (var i = x; i <= k; i++) {
-      r = calcHypergeometricFormulaWithMulligans(i,N,n,k,totalMulligans);
-      result += r;
-    }
+    result = calcAtLeastHypergeometricFormulaWithMulligans(x,N,n,k,totalMulligans);
   }
   return result;
 };
 
-var calcHypergeometricFormulaWithMulligans = function(x,N,n,k,m){
+var calcAtLeastHypergeometricFormulaWithMulligans = function(x,N,n,k,m){
   if (m === 0) {
-    return calcHypergeometricFormula(x,N,n,k);
+    return calcAtLeastHypergeometricFormula(x,N,n,k);
   } else {
-    var previousHand = calcHypergeometricFormulaWithMulligans(x,N,n,k,m-1);
-    return previousHand + (1 - previousHand) * calcHypergeometricFormula(x,N,n-m,k);
+    var previousHand = calcAtLeastHypergeometricFormulaWithMulligans(x,N,n,k,m-1);
+    return previousHand + (1 - previousHand) * calcAtLeastHypergeometricFormula(x,N,n-m,k);
   }
 };
 
-var calcHypergeometricFormula = function(x,N,n,k){
+var calcExactHypergeometricFormulaWithMulligans = function(x,N,n,k,m){
+  if (m === 0) {
+    return calcExactHypergeometricFormula(x,N,n,k);
+  } else {
+    var previousHand = calcExactHypergeometricFormulaWithMulligans(x,N,n,k,m-1);
+    return previousHand + (1 - previousHand) * calcExactHypergeometricFormula(x,N,n-m,k);
+  }
+};
+
+var calcAtLeastHypergeometricFormula = function(x,N,n,k){
+  var result = 0.0;
+
+  for (var i = x; i <= k; i++) {
+    result += calcExactHypergeometricFormula(i,N,n,k);
+  }
+
+  return result;
+};
+
+var calcExactHypergeometricFormula = function(x,N,n,k){
   if (n <= 0 || N <= 0) {
     return 0;
   }
