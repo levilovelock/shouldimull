@@ -13,6 +13,7 @@ var MULL_CALC = {
 
 // Result related vars
 var sanitizedResult = "";
+var sanitizedLastMulliganResult = "";
 var totalMulligans = 0;
 
 var UpdateStats = function() {
@@ -26,10 +27,20 @@ var UpdateStats = function() {
 
 var calcResult = function() {
   var result;
-  if (MULL_CALC.choice == EXACTLY) {
+  if (MULL_CALC.choice === EXACTLY) {
     result = calcExactHypergeometricFormulaWithMulligans(MULL_CALC.x, MULL_CALC.N, MULL_CALC.n, MULL_CALC.k, totalMulligans);
-  } else if (MULL_CALC.choice == AT_LEAST) {
+  } else if (MULL_CALC.choice === AT_LEAST) {
     result = calcAtLeastHypergeometricFormulaWithMulligans(MULL_CALC.x, MULL_CALC.N, MULL_CALC.n, MULL_CALC.k, totalMulligans);
+  }
+  return result;
+};
+
+var calcLastMulliganResult = function() {
+  var result;
+  if (MULL_CALC.choice === EXACTLY) {
+    result = calcExactHypergeometricFormula(MULL_CALC.x, MULL_CALC.N, MULL_CALC.n - totalMulligans, MULL_CALC.k);
+  } else if (MULL_CALC.choice === AT_LEAST) {
+    result = calcAtLeastHypergeometricFormula(MULL_CALC.x, MULL_CALC.N, MULL_CALC.n - totalMulligans, MULL_CALC.k);
   }
   return result;
 };
@@ -87,13 +98,68 @@ var fact = function(num){
 };
 
 var sanitizeResult = function(r) {
-  niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
+  var niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
   sanitizedResult = Math.min(Math.max(0,niceResult), 100);
+};
+
+var sanitizeLastMulliganResult = function(r) {
+  var niceResult = parseFloat(Math.round(r * 10000) / 100).toFixed(2);
+  sanitizedLastMulliganResult = Math.min(Math.max(0,niceResult), 100);
 };
 
 var updateResultsSection = function(r){
   $("#resultantChance").text(sanitizedResult);
-  $("#mulliganNumber").text(totalMulligans);
+  $("#lastMullResults").remove();
+
+  if (totalMulligans === 0) {
+    $("#mulliganResults").text("");
+  } else if (totalMulligans > 0) {
+    if (totalMulligans === 1) {
+      $("#mulliganResults").text(" after " + totalMulligans + " mulligan");
+    } else {
+      $("#mulliganResults").text(" after " + totalMulligans + " mulligans");
+    }
+
+    var mullResultTextBlock = "<h5 id=\"lastMullResults\" class=\"text-center\">and you had a " + sanitizedLastMulliganResult + "% chance to draw";
+
+    if (MULL_CALC.choice === EXACTLY) {
+      if (MULL_CALC.x === 1) {
+        mullResultTextBlock += " it in your last mull";
+      } else if (MULL_CALC.x > 1) {
+        mullResultTextBlock += " them in your last mull";
+      }
+    } else if (MULL_CALC.choice === AT_LEAST) {
+      if (MULL_CALC.x === 1 && MULL_CALC.k === 1) {
+        mullResultTextBlock += " it in your last mull";
+      } else if (MULL_CALC.x === MULL_CALC.k) {
+        mullResultTextBlock += " them in your last mull";
+      } else if (MULL_CALC.x === 1 && MULL_CALC.x + totalMulligans === MULL_CALC.n) {
+        mullResultTextBlock += " it in your last mull";
+      } else if (MULL_CALC.x > 1 && MULL_CALC.x + totalMulligans === MULL_CALC.n) {
+        mullResultTextBlock += " them in your last mull";
+      } else {
+        mullResultTextBlock += " at least " + MULL_CALC.x + " in your last mull";
+      }
+    }
+
+    $("#mulliganResults").parent().after(mullResultTextBlock);
+  }
+
+  if (MULL_CALC.choice === EXACTLY) {
+    if (MULL_CALC.x === 1) {
+      $("#cardPluralisation").text("your card");
+    } else if (MULL_CALC.x > 1) {
+      $("#cardPluralisation").text("your cards");
+    }
+  } else if (MULL_CALC.choice === AT_LEAST) {
+    if (MULL_CALC.k === 1 && MULL_CALC.x === 1) {
+      $("#cardPluralisation").text("your card");
+    } else if (MULL_CALC.k ===  MULL_CALC.x) {
+      $("#cardPluralisation").text("all " + MULL_CALC.k + " of your cards");
+    } else if (MULL_CALC.k > 1) {
+      $("#cardPluralisation").text("at least " + MULL_CALC.x + " of your cards");
+    }
+  }
 };
 
 var updateMullCalcVariables = function() {
@@ -166,6 +232,9 @@ var mulligan = function(){
   }
 
   var result = calcResult();
+  var lastMulliganResult = calcLastMulliganResult();
+
   sanitizeResult(result);
+  sanitizeLastMulliganResult(lastMulliganResult);
   updateResultsSection();
 };

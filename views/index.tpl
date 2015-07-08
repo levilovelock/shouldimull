@@ -48,7 +48,7 @@
   </div>
 
   <div class="container hide" id="resultsSection">
-    <h3 class="text-center">You have a <span id="resultantChance"></span>% chance of drawing your card(s) after <span id="mulliganNumber"></span> mulligans</h3>
+    <h3 class="text-center">You have a <span id="resultantChance"></span>% chance of drawing <span id="cardPluralisation"></span><span id="mulliganResults"></span></h3>
   </div>
 
   <script src="static/js/mulls.js"></script>
