@@ -71,6 +71,12 @@ QUnit.test("test draw 24 from population of 133 with number of successes equal t
   assert.ok(round(r) == 84.35);
 });
 
+QUnit.test("test draw 1 from population of 60 with number of successes equal to 1, wanting 1", function(assert){
+  r1 = calcAtLeastHypergeometricFormula(1,60,1,4);
+  r2 = calcExactHypergeometricFormula(1,60,1,4);
+  assert.ok(round(r1) === 6.67);
+  assert.ok(r1 === r2);
+});
 
 // Test Combinations
 QUnit.test("test combinations", function(assert){
