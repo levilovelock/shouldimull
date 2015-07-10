@@ -66,7 +66,7 @@ var calcExactHypergeometricFormulaWithMulligans = function(x,N,n,k,m){
 var calcAtLeastHypergeometricFormula = function(x,N,n,k){
   var result = 0.0;
 
-  for (var i = x; i <= k; i++) {
+  for (var i = x; i <= k && i <= n; i++) {
     result += calcExactHypergeometricFormula(i,N,n,k);
   }
 
@@ -74,7 +74,7 @@ var calcAtLeastHypergeometricFormula = function(x,N,n,k){
 };
 
 var calcExactHypergeometricFormula = function(x,N,n,k){
-  if (n <= 0 || N <= 0) {
+  if (n <= 0 || N <= 0 || x > n) {
     return 0;
   }
 
