@@ -1,4 +1,9 @@
 {{template "common/head.tpl"}}
+  <script src="static/js/helpers.js"></script>
+  <script src="static/js/mulls.js"></script>
+</head>
+
+<body>
   <div class="container">
     <div class="page-header">
       <h1>Welcome to the Mulligan Calculator!</h1>
@@ -50,6 +55,4 @@
   <div class="container hide" id="resultsSection">
     <h3 class="text-center">You have a <span id="resultantChance"></span>% chance of drawing <span id="cardPluralisation"></span><span id="mulliganResults"></span></h3>
   </div>
-
-  <script src="static/js/mulls.js"></script>
 {{template "common/foot.tpl"}}

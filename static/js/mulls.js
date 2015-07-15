@@ -238,3 +238,22 @@ var mulligan = function(){
   sanitizeLastMulliganResult(lastMulliganResult);
   updateResultsSection();
 };
+
+// Handle GET params
+$(document).ready(function() {
+  var localx, localN, localn, localk
+
+  localx = getParameterByName("x")
+  localN = getParameterByName("N")
+  localn = getParameterByName("n")
+  localk = getParameterByName("k")
+
+  $("#cardsInDeck").val(localN);
+  $("#cardsYouWant").val(localk);
+  $("#cardDraws").val(localn);
+  $("#numYouWant").val(localx);
+
+  if (localx != "" || localN != "" || localn != "" || localk != "") {
+    UpdateStats();
+  }
+});
