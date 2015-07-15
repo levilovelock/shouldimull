@@ -7,7 +7,7 @@
 
     <title>Mulligan Calculator</title>
 
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{bootstrapCSSSource}}" rel="stylesheet">
     <link href="static/css/sticky-footer.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
 
@@ -19,6 +19,6 @@
     <![endif]-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="static/js/jquery.min.js"></script>
+    <script src="{{jquerySource}}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="{{bootstrapJavascriptSource}}"></script>
