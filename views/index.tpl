@@ -47,7 +47,9 @@
       <div class="text-center">
         <button type="button" class="btn btn-warning hide" id="resetButton" onclick="resetPage()">Reset</button>
         <button type="button" class="btn btn-primary" id="goButton" onclick="UpdateStats()">Go</button>
-        <button type="button" class="btn btn-success hide" id="mulliganButton" onclick="mulligan()">Mulligan</button>
+        <button type="button" class="btn btn-success hide" id="mulliganButton" onclick="mulligan()">
+          Mulligan</button>
+        <button type="button" class="btn btn-link hide" id="shareButton" onclick="share()">Share</button>
       </div>
     </form>
   </div>

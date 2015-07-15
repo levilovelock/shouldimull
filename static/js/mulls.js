@@ -199,6 +199,7 @@ var unhideResults = function(){
     $(function(){
       $("#resetButton").removeClass("hide");
       $("#mulliganButton").removeClass("hide");
+      $("#shareButton").removeClass("hide");
       $("#resultsSection").removeClass("hide");
     });
     buttonHit = true;
@@ -217,6 +218,7 @@ var hideResults = function(){
   $(function(){
     $("#resetButton").addClass("hide");
     $("#mulliganButton").addClass("hide");
+    $("#shareButton").addClass("hide");
     $("#resultsSection").addClass("hide");
   });
   buttonHit = false;
@@ -241,12 +243,13 @@ var mulligan = function(){
 
 // Handle GET params
 $(document).ready(function() {
-  var localx, localN, localn, localk;
+  var localx, localN, localn, localk, localm, localOpt;
 
   localx   = getParameterByName("x");
   localN   = getParameterByName("N");
   localn   = getParameterByName("n");
   localk   = getParameterByName("k");
+  localm   = getParameterByName("m");
   localOpt = getParameterByName("o");
 
   if (localOpt === "atl") {
@@ -260,7 +263,41 @@ $(document).ready(function() {
   $("#cardDraws").val(localn);
   $("#numYouWant").val(localx);
 
-  if (localx !== "" || localN !== "" || localn !== "" || localk !== "") {
+  if ((localx !== "" || localN !== "" || localn !== "" || localk !== "") && localm === "") {
     UpdateStats();
+  } else if (localm !== "") {
+    UpdateStats();
+    if (localm < MULL_CALC.n) {
+      totalMulligans = localm - 1;
+    } else {
+      totalMulligans = localm;
+    }
+
+    mulligan();
   }
 });
+
+function share(){
+  var localx, localN, localn, localk, localm, localOpt;
+
+  localx = $("#numYouWant").val();
+  localN = $("#cardsInDeck").val();
+  localn = $("#cardDraws").val();
+  localk = $("#cardsYouWant").val();
+  localm = totalMulligans;
+  localOpt = $("#hyperChoice").val();
+
+  if (localOpt === EXACTLY) {
+    localOpt = "exa";
+  } else if (localOpt === AT_LEAST) {
+    localOpt = "atl";
+  }
+
+  var linkUrl = "http://www.shouldimull.com/?x=" + localx + "&N=" + localN + "&n=" + localn + "&k=" + localk + "&opt=" + localOpt;
+
+  if (localm > 0) {
+    linkUrl += "&m=" + localm;
+  }
+
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", linkUrl);
+}
