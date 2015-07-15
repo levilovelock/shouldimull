@@ -18,6 +18,7 @@ module.exports = function(config) {
       'static/js/jquery.min.js',
       'static/js/bootstrap.min.js',
       'static/js/mulls.js',
+      'static/js/helpers.js',
       'tests/js/**/*.js'
     ],
 
