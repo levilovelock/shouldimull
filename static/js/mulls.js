@@ -243,10 +243,17 @@ var mulligan = function(){
 $(document).ready(function() {
   var localx, localN, localn, localk;
 
-  localx = getParameterByName("x");
-  localN = getParameterByName("N");
-  localn = getParameterByName("n");
-  localk = getParameterByName("k");
+  localx   = getParameterByName("x");
+  localN   = getParameterByName("N");
+  localn   = getParameterByName("n");
+  localk   = getParameterByName("k");
+  localOpt = getParameterByName("o");
+
+  if (localOpt === "atl") {
+    $("#hyperChoice").val(AT_LEAST);
+  } else if (localOpt === "exa") {
+    $("#hyperChoice").val(EXACTLY);
+  }
 
   $("#cardsInDeck").val(localN);
   $("#cardsYouWant").val(localk);
