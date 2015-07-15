@@ -293,7 +293,7 @@ function share(){
     localOpt = "atl";
   }
 
-  var linkUrl = "http://www.shouldimull.com/?x=" + localx + "&N=" + localN + "&n=" + localn + "&k=" + localk + "&opt=" + localOpt;
+  var linkUrl = "http://www.shouldimull.com/?x=" + localx + "&N=" + localN + "&n=" + localn + "&k=" + localk + "&o=" + localOpt;
 
   if (localm > 0) {
     linkUrl += "&m=" + localm;
